@@ -5,11 +5,19 @@ PKG_VERSION:=0.0.1
 PKG_RELEASE:=23012026
 
 LUCI_TITLE:=LuCI TTL
-LUCI_DESCRIPTION:=TTL for LuCI
-LUCI_DEPENDS:=+luci-base 
+LUCI_DESCRIPTION:=TTL interface for LuCI with nftables support
+LUCI_DEPENDS:=+luci-base
 LUCI_PKGARCH:=all
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
-# call BuildPackage - OpenWrt buildroot signature
+define Package/$(PKG_NAME)/postinst
+#!/bin/sh
+if [ -z "$${IPKG_INSTROOT}" ]; then
+    /etc/init.d/firewall restart
+    rm -f /tmp/luci-indexcache /tmp/luci-modulecache
+fi
+exit 0
+endef
+
 $(eval $(call BuildPackage,$(PKG_NAME)))
