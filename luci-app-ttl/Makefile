@@ -20,4 +20,14 @@ fi
 exit 0
 endef
 
+define Package/$(PKG_NAME)/prerm
+#!/bin/sh
+if [ -z "$${IPKG_INSTROOT}" ]; then
+    rm -f /etc/nftables.d/ttl67.nft
+    /etc/init.d/firewall restart
+    rm -f /tmp/luci-indexcache /tmp/luci-modulecache
+fi
+exit 0
+endef
+
 $(eval $(call BuildPackage,$(PKG_NAME)))
