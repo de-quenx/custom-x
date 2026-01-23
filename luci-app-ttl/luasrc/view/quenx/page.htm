@@ -1,0 +1,40 @@
+<%+header%>
+
+<h2>Fix TTL</h2>
+
+<% if ttl_enabled then %>
+    <div class="cbi-section">
+        <h3 style="color: green;">Status: ON</h3>
+    </div>
+<% else %>
+    <div class="cbi-section">
+        <h3 style="color: red;">Status: OFF</h3>
+    </div>
+<% end %>
+
+<form method="post">
+    <div class="cbi-section">
+        <label for="ttl_value">Enter TTL Value:</label>
+        <input type="number" id="ttl_value" name="ttl_value" min="1" max="255" value="<%= ttl_value %>" required>
+    </div>
+    <div class="cbi-section" style="display: flex; gap: 10px; align-items: center;">
+        <button class="cbi-button cbi-button-apply" type="submit" name="action" value="set_ttl">
+            Set TTL
+        </button>
+        <% if ttl_enabled then %>
+            <button class="cbi-button cbi-button-negative" type="submit" name="action" value="disable_ttl">
+                Disable
+            </button>
+        <% else %>
+            <button class="cbi-button cbi-button-positive" type="submit" name="action" value="enable_ttl">
+                Enable
+            </button>
+        <% end %>
+    </div>
+</form>
+
+<div class="cbi-section">
+    <p><small>By Quenx | TTL Range: 1-200</small></p>
+</div>
+
+<%+footer%>
