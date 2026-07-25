@@ -36,7 +36,6 @@ chain mangle_prerouting_ttl67 {
         f:close()
     end
 
-    luci.sys.call("nft -f " .. ttl_file)
     luci.sys.call("/etc/init.d/firewall restart")
 end
 
