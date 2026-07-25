@@ -94,7 +94,7 @@ jobs:
           - x86_64
         branch:
           - openwrt-24.10
-          - SNAPSHOT
+          - openwrt-25.12
 
     steps:
       - name: Checkout repository
