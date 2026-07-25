@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-ttl
-PKG_VERSION:=0.0.1
-PKG_RELEASE:=23012026
+PKG_VERSION:=0.0.2
+PKG_RELEASE:=25072026
 
 LUCI_TITLE:=LuCI TTL
 LUCI_DESCRIPTION:=TTL interface for LuCI with nftables support
